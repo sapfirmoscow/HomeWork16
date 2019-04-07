@@ -1,4 +1,4 @@
-package ru.sberbank.homework16.data.repository.room;
+package ru.sberbank.homework16.data.cache.room;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;

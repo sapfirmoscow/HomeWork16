@@ -10,9 +10,10 @@ import android.view.View;
 import javax.inject.Inject;
 
 import ru.sberbank.homework16.R;
-import ru.sberbank.homework16.di.DaggerSampleComponent;
-import ru.sberbank.homework16.di.SampleComponent;
-import ru.sberbank.homework16.di.SampleModule;
+import ru.sberbank.homework16.di.ContextModule;
+import ru.sberbank.homework16.di.DaggerWeatherComponent;
+import ru.sberbank.homework16.di.ViewModule;
+import ru.sberbank.homework16.di.WeatherModule;
 import ru.sberbank.homework16.domain.entity.Forecast;
 import ru.sberbank.homework16.domain.entity.Forecasts;
 import ru.sberbank.homework16.presentation.presenters.MainPresenter;
@@ -37,8 +38,11 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     }
 
     private void initInjector() {
-        SampleComponent sampleComponent = DaggerSampleComponent.builder().sampleModule(new SampleModule(this, MainActivity.this)).build();
-        sampleComponent.inject(this);
+        DaggerWeatherComponent.builder()
+                .weatherModule(new WeatherModule())
+                .contextModule(new ContextModule(this))
+                .viewModule(new ViewModule(this))
+                .build().inject(this);
     }
 
     private void initListeners() {

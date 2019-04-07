@@ -1,4 +1,4 @@
-package ru.sberbank.homework16.data.repository.retrofit;
+package ru.sberbank.homework16.data.net.retrofit;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

@@ -1,7 +1,5 @@
 package ru.sberbank.homework16.di;
 
-import android.content.Context;
-
 import dagger.Module;
 import dagger.Provides;
 import ru.sberbank.homework16.MainThreadImpl;
@@ -14,15 +12,7 @@ import ru.sberbank.homework16.presentation.presenters.MainPresenter;
 import ru.sberbank.homework16.presentation.presenters.impl.MainPresenterImpl;
 
 @Module
-public class SampleModule {
-
-    MainPresenter.View mView;
-    Context mContext;
-
-    public SampleModule(MainPresenter.View view, Context context) {
-        mView = view;
-        mContext = context;
-    }
+public class WeatherModule {
 
     @Provides
     public MainPresenter provideMainPresenter(Executor executor, MainThread mainThread, MainPresenter.View view, ForecastRepository forecastRepository) {
@@ -39,19 +29,11 @@ public class SampleModule {
         return MainThreadImpl.getInstance();
     }
 
-    @Provides
-    public ForecastRepository provideForecastRepository(Context context) {
-        return new ForecastRepositoryImpl(context);
-    }
 
     @Provides
-    MainPresenter.View provideView() {
-        return mView;
+    public ForecastRepository provideForecastRepository() {
+        return new ForecastRepositoryImpl();
     }
 
-    @Provides
-    Context provideContext() {
-        return mContext;
-    }
 
 }

@@ -1,5 +1,7 @@
 package ru.sberbank.homework16.presentation.presenters.impl;
 
+import javax.inject.Inject;
+
 import ru.sberbank.homework16.domain.entity.Forecasts;
 import ru.sberbank.homework16.domain.executor.Executor;
 import ru.sberbank.homework16.domain.executor.MainThread;
@@ -11,14 +13,16 @@ import ru.sberbank.homework16.presentation.presenters.base.AbstractPresenter;
 
 public class MainPresenterImpl extends AbstractPresenter implements MainPresenter, GetForecast.Callback {
 
-    private MainPresenter.View mView;
-    private ForecastRepository mForecastRepository;
+    MainPresenter.View mView;
+    ForecastRepository mForecastRepository;
 
+    @Inject
     public MainPresenterImpl(Executor executor, MainThread mainThread, View view, ForecastRepository forecastRepository) {
         super(executor, mainThread);
         mView = view;
         mForecastRepository = forecastRepository;
     }
+
 
     @Override
     public void resume() {
